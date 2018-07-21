@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 
 import './index.css';
@@ -12,7 +12,12 @@ import {
   Rem
 } from './index.redux'
 
-const store = createStore(machineGunAction, applyMiddleware(thunk))
+const reduxDev = window.devToolsExtension() || (f => f)
+
+const store = createStore(machineGunAction, compose(
+  applyMiddleware(thunk),
+  reduxDev
+))
 store.subscribe(renderDOM)
 
 const machineGun = {

@@ -10,6 +10,8 @@ export function machineGunAction(state = 0, action) {
     case REM:
       if (state > 0) return state - 1
       break
+    default:
+      break
   }
   return state
 }
