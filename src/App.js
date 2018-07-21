@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { createStore } from 'redux'
 
 class App extends Component {
   render() {
+    const store = this.props.machineGun.store
+    const current = store.getState()
+    const add = this.props.machineGun.addGun
+    const rem = this.props.machineGun.remGun
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h2>Now we have {current} machine guns</h2>
+        <button onClick={() => store.dispatch(add())}>ADD</button>
+        <button onClick={() => store.dispatch(rem())}>REMOVE</button>
       </div>
     );
   }
