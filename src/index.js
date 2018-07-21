@@ -2,33 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
 
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {
-  machineGunAction,
-  Add,
-  Rem
+  machineGunAction
 } from './index.redux'
 
 const reduxDev = window.devToolsExtension() || (f => f)
-
 const store = createStore(machineGunAction, compose(
   applyMiddleware(thunk),
   reduxDev
 ))
-store.subscribe(renderDOM)
 
-const machineGun = {
-  store: store,
-  addGun: Add,
-  remGun: Rem
-}
-
-function renderDOM() {
-  ReactDOM.render(<App machineGun={machineGun}/>, document.getElementById('root'));
-  registerServiceWorker();
-}
-
-renderDOM()
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'));
+registerServiceWorker();
