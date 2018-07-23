@@ -6,7 +6,8 @@ const { resolve } = require('path')
 const setup = require('../setup/server')
 
 const MIDDLEWARES = [
-  'database'
+  'database',
+  'interceptor'
 ]
 
 MIDDLEWARES.map(p => {
