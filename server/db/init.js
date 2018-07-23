@@ -11,7 +11,9 @@ exports.connect = () => {
     if (process.env.NODE_ENV !== 'production') {
       mongoose.set('debug', true)
     }
-    mongoose.connect(dbConn)
+    mongoose.connect(dbConn, {
+      useNewUrlParser: true
+    })
 
     mongoose.connection.on('disconnected', () => {
       reject('DB-LOST-CONNECTION')
