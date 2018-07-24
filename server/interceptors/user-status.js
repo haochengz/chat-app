@@ -1,14 +1,8 @@
 
-module.exports = (ctx, next) => {
-  console.log(ctx)
+module.exports = async (ctx, next) => {
   // request interceptor
-  ctx.status = 200
-  ctx.response.type = 'JSON'
-  ctx.body = {
-    data: {
-      code: 1
-    }
-  }
-  next()
+  console.log('Comming request')
+  await next()
   // response interceptor
+  console.log('Responding')
 }
