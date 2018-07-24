@@ -2,9 +2,9 @@
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
 
-exports.findUserByUsername = async username => {
+exports.findUserByType = async (type, value) => {
   const code = await User.findOne({
-    username: username
+    [type]: value
   })
   return code
 }
