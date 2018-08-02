@@ -30,12 +30,12 @@ userRouter.put('/api/user', koaBody(), async (ctx, next) => {
   const registrant = ctx.request.body
   const status = await register(registrant)
   if(status) {
-    return {
+    ctx.body = {
       code: 0,
       user: status
     }
   } else {
-    return {
+    ctx.body = {
       code: -1
     }
   }
