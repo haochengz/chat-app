@@ -7,7 +7,8 @@ import {
   Button,
   WingBlank,
   NoticeBar,
-  Icon
+  Icon,
+  Modal
 } from 'antd-mobile'
 import axios from 'axios'
 
@@ -31,9 +32,15 @@ export default class Register extends Component {
         email: null,
         password: null,
       },
+      modal: false
     }
   }
 
+  onClose = key => () => {
+    this.setState({
+      [key]: false,
+    });
+  }
   async setUserInfo(type, value) {
     await this.setState({
       [type]: value
@@ -61,6 +68,16 @@ export default class Register extends Component {
       email,
       password,
       identity
+    }).then(res => {
+      console.log(res.data)
+      console.log(res.data.code)
+      if(res.data.code === -1) {
+        this.setState({
+          modal: true
+        })
+      }
+    }).catch(error => {
+      // network error
     })
   }
 
@@ -125,6 +142,19 @@ export default class Register extends Component {
           <Button onClick={() => this.props.history.push('/login')}>Already had an account</Button>
           <WhiteSpace />
         </WingBlank>
+        <Modal
+          visible={this.state.modal}
+          transparent
+          maskClosable={false}
+          onClose={this.onClose('modal1')}
+          title="Register"
+          footer={[{ text: 'Ok', onPress: () => { console.log('ok'); this.onClose('modal')(); } }]}
+          wrapProps={{ onTouchStart: this.onWrapTouchStart }}
+        >
+          <div style={{ height: 100, overflow: 'scroll' }}>
+            Failed
+          </div>
+        </Modal>
       </div>
     )
   }
