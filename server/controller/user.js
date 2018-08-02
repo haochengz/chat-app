@@ -20,9 +20,7 @@ exports.register = async (registrant) => {
       }
     ]
   })
-  console.log(status)
   if(status.length > 0) {
-    console.log('Return of false')
     return false
   } else {
     const user = new User(registrant)

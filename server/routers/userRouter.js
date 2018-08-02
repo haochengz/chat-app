@@ -29,7 +29,16 @@ userRouter.get('/api/user/query/email/:email', async (ctx, next) => {
 userRouter.put('/api/user', koaBody(), async (ctx, next) => {
   const registrant = ctx.request.body
   const status = await register(registrant)
-  console.log(status)
+  if(status) {
+    return {
+      code: 0,
+      user: status
+    }
+  } else {
+    return {
+      code: -1
+    }
+  }
 })
 
 module.exports = userRouter
