@@ -56,7 +56,7 @@ export default class Register extends Component {
     const email = this.state.email
     const password = this.state.password
     const identity = this.state.identity
-    axios.put('/user', {
+    axios.put('/api/user', {
       username,
       email,
       password,
