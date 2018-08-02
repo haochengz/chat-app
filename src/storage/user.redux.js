@@ -18,7 +18,7 @@ export function user(state=userInitState, action) {
   }
 }
 
-function register(username, password, identity) {
+export function register(username, password, identity) {
   axios.put('/api/user', {
     username,
     password,

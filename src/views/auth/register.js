@@ -3,16 +3,18 @@ import React, { Component } from 'react'
 import {
   WhiteSpace,
   List,
-  InputItem,
   Radio,
   Button,
   WingBlank,
   NoticeBar,
   Icon
 } from 'antd-mobile'
+import axios from 'axios'
 
 import Logo from '../../components/logo'
-import { checkRegisterInput } from '../../util/helper'
+import UsernameInput from '../../components/auth/username-input'
+import EmailInput from '../../components/auth/email-input'
+import PasswordInput from '../../components/auth/password-input'
 
 const RadioItem = Radio.RadioItem
 
@@ -22,84 +24,44 @@ export default class Register extends Component {
     this.state = {
       username: null,
       email: null,
-      password1: null,
-      password2: null,
+      password: null,
       identity: 0,
       errorMsg: {
         username: null,
         email: null,
         password: null,
       },
-      isFinishInput: false,
     }
-  }
-
-  checkFinish() {
-    let isFinish = true
-    const fields = [
-      'username',
-      'email',
-      'password1',
-      'password2'
-    ]
-    fields.map(v => {
-      if(this.state[v] === null) {
-        isFinish = false
-      }
-    })
-    const errors = this.state.errorMsg
-    for(let k in errors) {
-      if(errors[k]) {
-        isFinish = false
-      }
-    }
-    this.setState({
-      isFinishInput: isFinish
-    })
   }
 
   async setUserInfo(type, value) {
     await this.setState({
       [type]: value
     })
-    const isNotValid = checkRegisterInput[type](value)
-    const isMatch = checkRegisterInput.passwordMatch(
-      this.state.password1,
-      this.state.password2
-    )
-    if(type.startsWith('password')) {
-      type = 'password'
-    }
-    if (isNotValid) {
-      this.setState({
-        errorMsg: {
-          ...this.state.errorMsg,
-          [type]: isNotValid.msg
-        }
-      })
-    } else if(!isMatch) {
-      this.setState({
-        errorMsg: {
-          ...this.state.errorMsg,
-          password: 'Password doesn\'t match',
-        }
-      })
-    } else {
-      this.setState({
-        errorMsg: {
-          ...this.state.errorMsg,
-          [type]: null
-        }
-      })
-    }
-    this.checkFinish()
   }
 
-  checkValidation(type, value) {
+  async checkValidation(type, value, errors) {
+    await this.setUserInfo(type, value)
+    await this.setState({
+      errorMsg: {
+        ...this.state.errorMsg,
+        [type]: errors
+      }
+    })
   }
 
   signup() {
     console.log('Sign Up')
+    const username = this.state.username
+    const email = this.state.email
+    const password = this.state.password
+    const identity = this.state.identity
+    axios.put('/user', {
+      username,
+      email,
+      password,
+      identity
+    })
   }
 
   render() {
@@ -108,9 +70,13 @@ export default class Register extends Component {
       { value: 1, label: 'I\'m an Employee' }
     ]
     let notice = null
+    let isFinishInput = false
+    if(this.state.username && this.state.email && this.state.password) isFinishInput = true
     for(let error in this.state.errorMsg) {
-      if(this.state.errorMsg[error]) {
-        notice = this.state.errorMsg[error]
+      if(this.state.errorMsg[error] && this.state.errorMsg[error].length > 0) {
+        notice = this.state.errorMsg[error][0]
+        isFinishInput = false
+        break
       }
     }
     const noticeBar = (
@@ -128,25 +94,12 @@ export default class Register extends Component {
           <List
             renderHeader={() => 'Profile'}
           >
-            <InputItem
-              clear
-              placeholder='Username'
-              onChange={v => this.setUserInfo('username', v)}
-              onBlur={v => this.checkValidation('username', v)}
-              error={this.state.errorMsg.username}
-            >
-              Username:
-            </InputItem>
-            <InputItem
-              clear
-              placeholder='Email'
-              onChange={v => this.setUserInfo('email', v)}
-              onBlur={v => this.checkValidation('email', v)}
-              type='email'
-              error={this.state.errorMsg.email}
-            >
-              Email:
-            </InputItem>
+            <UsernameInput
+              validator={this.checkValidation.bind(this)}
+            />
+            <EmailInput
+              validator={this.checkValidation.bind(this)}
+            />
             {identities.map(i => (
               <RadioItem
                 key={i.value}
@@ -156,32 +109,15 @@ export default class Register extends Component {
                 {i.label}
               </RadioItem>
             ))}
-            <InputItem
-              clear
-              placeholder='Password'
-              onChange={v => this.setUserInfo('password1', v)}
-              onBlur={v => this.checkValidation('password1', v)}
-              type="password"
-              error={this.state.errorMsg.password}
-            >
-              Password:
-            </InputItem>
-            <InputItem
-              clear
-              placeholder='Repeat Password'
-              onChange={v => this.setUserInfo('password2', v)}
-              onBlur={v => this.checkValidation('password2', v)}
-              type="password"
-              error={this.state.errorMsg.password}
-            >
-              Password:
-            </InputItem>
+            <PasswordInput
+              validator={this.checkValidation.bind(this)}
+            />
           </List>
           <WhiteSpace />
           <Button
             type="primary"
             onClick={() => this.signup()}
-            disabled={!this.state.isFinishInput}
+            disabled={!isFinishInput}
           >
             Submit
           </Button>

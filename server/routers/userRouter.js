@@ -7,6 +7,7 @@ userRouter.get('/api/user/query/username/:username', async (ctx, next) => {
   const user = await findUserByType('username', ctx.params.username)
   const code = user ? 0 : -1
   console.log('code: ', code)
+  console.log('user: ', user)
   ctx.body = {
     code: code
   }
