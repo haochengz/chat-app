@@ -9,8 +9,19 @@ mongoose.Promise = global.Promise
 const dbConn = `mongodb://${db.user}:${db.pwd}@${db.host}:${db.port}/${db.name}`
 
 exports.initSchema = function() {
-  glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
+  glob.sync(resolve(__dirname, 'schema', '**/*.js'))
+    .forEach(require)
 }
+
+// exports.initSchema = function() {
+//   return new Promise((res, rej) => {
+//     glob.sync(resolve(__dirname, 'schema', '**/*.js'))
+//       .forEach((file, index, files) => {
+//         require(file)
+//         if(index === files.length - 1) res('OK')
+//       })
+//   })
+// }
 
 exports.initAdmin = async function() {
   const User = mongoose.model('User')

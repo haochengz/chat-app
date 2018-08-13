@@ -4,9 +4,11 @@ const koaBody = require('koa-body')
 const userRouter = new Router()
 const {
   findUserByType,
-  register
+  register,
+  auth
 } = require('../controller/user')
 
+// TODO: user information should using post method for inquiry
 userRouter.get('/api/user/query/username/:username', async (ctx, next) => {
   const user = await findUserByType('username', ctx.params.username)
   const code = user ? 0 : -1
@@ -24,6 +26,14 @@ userRouter.get('/api/user/query/email/:email', async (ctx, next) => {
   ctx.body = {
     code: code
   }
+})
+
+// userRouter.get()
+// userRouter.delete()
+userRouter.post('/api/user', koaBody(), async (ctx, next) => {
+  const user = ctx.request.body
+  ctx.body = await auth(user)
+  return next()
 })
 
 userRouter.put('/api/user', koaBody(), async (ctx, next) => {

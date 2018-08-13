@@ -76,6 +76,15 @@ userSchema.pre('save', function(next) {
   next()
 })
 
+userSchema.statics.comparePassword = function(pwd1, pwd2) {
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(pwd1, pwd2, (err, isMatch) => {
+      if(!err) resolve(isMatch)
+      else reject(err)
+    })
+  })
+}
+
 userSchema.methods = {
   comparePassword: (password, _password) => {
     return new Promise((resolve, reject) => {
