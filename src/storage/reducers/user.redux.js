@@ -1,15 +1,19 @@
 
 import axios from 'axios'
+import {
+  LOGIN
+} from '../types.redux'
 
 const userInitState = {
+  hasLogin: false,
   username: null,
   email: null,
   identity: null
 }
 
-export function user(state=userInitState, action) {
+export default function user(state=userInitState, action) {
   switch(action.type) {
-    case 'ADD':
+    case LOGIN:
       return state + 1
     case 'MINUS':
       return state - 1

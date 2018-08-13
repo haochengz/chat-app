@@ -28,7 +28,10 @@ export default class UserStatus extends React.Component {
         greenLight: true
       })
     } else {
-      axios.get('/user')
+      // TODO: not working yet, suppose to calling a backend auth interface
+      // with cookies which contains user information and login with that 
+      // information. Waiting for backend implementation
+      axios.get('/api/user')
         .then(res => {
           if (res.data.code === 0) {
             return null

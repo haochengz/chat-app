@@ -7,10 +7,22 @@ import {
   List,
   InputItem
 } from 'antd-mobile'
+import { connect } from 'react-redux'
+import axios from 'axios'
 
 import Logo from '../../components/logo'
+import {
+  signin
+} from '../../storage/actions/user.redux'
 
+@connect(state => ({user: state.user}), {signin})
 export default class Login extends Component {
+  componentDidMount() {
+    axios.post('/api/user', {
+      username: 'jackma',
+      password: 'abc8383815423'
+    })
+  }
   signin() {
     console.log('Sign in')
   }
