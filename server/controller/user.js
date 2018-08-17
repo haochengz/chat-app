@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 const User = mongoose.model('User')
 
 exports.findUserByType = async (type, value) => {
-  const code = await User.findOne({
+  const entity = await User.findOne({
     [type]: value
   })
-  return code
+  return entity
 }
 
 exports.register = async registrant => {
@@ -46,7 +46,10 @@ exports.auth = async user => {
     if(status) {
       return {
         code: 0,
-        msg: 'success'
+        msg: 'success',
+        data: {
+          user: userModel
+        }
       }
     } else {
       return {

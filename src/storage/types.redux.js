@@ -1,3 +1,3 @@
 
-export const LOGIN = Symbol()
-export const LOGOUT = Symbol()
+export const LOGIN = Symbol('LOGIN')
+export const LOGOUT = Symbol('LOGOUT')

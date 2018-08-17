@@ -127,6 +127,9 @@ export default class SignupView extends React.Component {
         password_: {
           v: p2,
           errors: this.passwordMatch(p1, p2)
+        },
+        globalError: {
+          hasError: false
         }
       })
     } else if(type === 'password_') {
@@ -135,6 +138,9 @@ export default class SignupView extends React.Component {
         [type]: {
           v: p2,
           errors: this[type+'Error'](p2)
+        },
+        globalError: {
+          hasError: false
         }
       })
     } else {
@@ -142,6 +148,9 @@ export default class SignupView extends React.Component {
         [type]: {
           v: v,
           errors: this[type+'Error'](v)
+        },
+        globalError: {
+          hasError: false
         }
       })
     }
@@ -153,9 +162,13 @@ export default class SignupView extends React.Component {
     }
   }
 
-  checkOnServer(url, value) {
+  checkOnServer(url, type, value) {
     return new Promise((resolve, reject) => {
-      axios.get(url + value)
+      axios.get(url, {
+        params: {
+          [type]: value
+        }
+      })
       .then(res => {
         if(res.data.code === 0){
           reject('taken')
@@ -189,25 +202,27 @@ export default class SignupView extends React.Component {
   async submit() {
     if(this.state.submitBtnName === 'SIGN UP') {
       try {
-        await this.checkOnServer('/api/user/query/username/', this.state.username.v)
+        await this.checkOnServer('/api/v1/user/username', 'username', this.state.username.v)
       } catch(error) {
         this.setTakenError('username')
       }
       try {
-        await this.checkOnServer('/api/user/query/email/', this.state.email.v)
+        await this.checkOnServer('/api/v1/user/email', 'email', this.state.email.v)
       } catch(error) {
         this.setTakenError('email')
       }
-      this.setState({
-        submitBtnName: 'CONTINUE',
-        locked: true
-      })
+      if(this.state.globalError.hasError === false) {
+        this.setState({
+          submitBtnName: 'CONTINUE',
+          locked: true
+        })
+      }
     } else {
       const username = this.state.username.v
       const email = this.state.email.v
       const password = this.state.password.v
       const identity = this.state.identity.v
-      axios.put('/api/user', {
+      axios.put('/api/v1/user', {
         username,
         email,
         password,

@@ -1,7 +1,7 @@
 
-import axios from 'axios'
 import {
-  LOGIN
+  LOGIN,
+  LOGOUT
 } from '../types.redux'
 
 const userInitState = {
@@ -11,25 +11,22 @@ const userInitState = {
   identity: null
 }
 
-export default function user(state=userInitState, action) {
+function user(state=userInitState, action) {
   switch(action.type) {
     case LOGIN:
-      return state + 1
-    case 'MINUS':
-      return state - 1
+      const loginUser = action.payload
+      return {
+        ...state,
+        hasLogin: true,
+        username: loginUser.username,
+        email: loginUser.email,
+        identity: loginUser.identity
+      }
+    case LOGOUT:
+      return userInitState
     default:
       return state
   }
 }
 
-export function register(username, password, identity) {
-  axios.put('/api/user', {
-    username,
-    password,
-    identity
-  }).then(res => {
-    console.log(res)
-  }).catch(error => {
-    console.log(error)
-  })
-}
+export default user

@@ -1,8 +1,17 @@
 import React from 'react'
-import axios from 'axios'
-import { NoticeBar, Icon } from 'antd-mobile'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import {
+  Button
+} from 'antd-mobile'
+
+import {
+  signin,
+  signout
+} from '../../storage/actions/user.redux'
+
 const R = require('ramda')
+
 
 const publicViewList = [
   '/login',
@@ -10,6 +19,10 @@ const publicViewList = [
 ]
 
 @withRouter
+@connect(
+  state => ({ user: state.user }),
+  { signin, signout }
+)
 export default class UserStatus extends React.Component {
   constructor(props) {
     super(props)
@@ -18,6 +31,12 @@ export default class UserStatus extends React.Component {
       greenLight: false
     }
   }
+
+  async componentWillMount() {
+    if(this.props.user.hasLogin === false)
+      this.props.signin()
+  }
+
   componentDidMount() {
     const isPublicRequest = R.any(
       R.equals(this.props.location.pathname)
@@ -28,41 +47,40 @@ export default class UserStatus extends React.Component {
         greenLight: true
       })
     } else {
-      // TODO: not working yet, suppose to calling a backend auth interface
-      // with cookies which contains user information and login with that 
-      // information. Waiting for backend implementation
-      axios.get('/api/user')
-        .then(res => {
-          if (res.data.code === 0) {
-            return null
-          } else {
-            this.setState({
-              notice: 'Please Login First',
-              greenLight: false
-            })
-            this.props.history.push('/login')
-          }
-        })
-        .catch(err => {
-          console.log(err)
-          this.setState({
-            notice: 'Network error',
-            greenLight: false
-          })
-        })
+      this.setState({
+        notice: 'Please Login First',
+        greenLight: false
+      })
+    }
+  }
+
+  click() {
+    if(this.props.user.hasLogin) {
+      this.props.signout()
+      this.props.history.push('/login')
+    } else {
+      this.props.history.push('/login')
     }
   }
 
   render() {
-    const msg = (
-      <NoticeBar
-        mode="closable"
-        icon={<Icon type="check-circle-o" size="xxs" />}
-      >{this.state.notice}</NoticeBar>
+    const loginUser = this.props.user.username
+    if(this.props.user.hasLogin || this.state.greenLight) {
+      var app = this.props.children
+    }
+    const statusBar = (
+      <Button
+        type="primary"
+        onClick={this.click.bind(this)}
+      >
+        {this.props.user.hasLogin ? 'Sign out from ' + loginUser : 'Sign in'}
+      </Button>
     )
-    const notice = this.state.notice
-      ? msg
-      : null
-    return notice
+    return (
+      <div>
+        {statusBar}
+        {app}
+      </div>
+    )
   }
 }

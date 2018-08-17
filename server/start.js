@@ -8,8 +8,9 @@ const setup = require('../setup/server')
 
 const MIDDLEWARES = [
   'database',
-  'interceptor',
+  'cookie',
   'third-party',
+  'interceptor',
   'route'
 ]
 
