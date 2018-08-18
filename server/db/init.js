@@ -8,22 +8,14 @@ mongoose.Promise = global.Promise
 
 const dbConn = `mongodb://${db.user}:${db.pwd}@${db.host}:${db.port}/${db.name}`
 
-exports.initSchema = function() {
+const initSchema = function() {
+  console.log('[INFO] Initializing data schemas')
   glob.sync(resolve(__dirname, 'schema', '**/*.js'))
     .forEach(require)
 }
 
-// exports.initSchema = function() {
-//   return new Promise((res, rej) => {
-//     glob.sync(resolve(__dirname, 'schema', '**/*.js'))
-//       .forEach((file, index, files) => {
-//         require(file)
-//         if(index === files.length - 1) res('OK')
-//       })
-//   })
-// }
-
-exports.initAdmin = async function() {
+const initAdmin = async function() {
+  console.log('[INFO] Initializing admin account')
   const User = mongoose.model('User')
   const admin = db.admin
   if (await User.findOne({ username: admin.username })) return
@@ -35,7 +27,7 @@ exports.initAdmin = async function() {
   await administrator.save()
 }
 
-exports.connect = function() {
+const connect = function() {
   return new Promise((resolve, reject) => {
     if (process.env.NODE_ENV !== 'production') {
       mongoose.set('debug', true)
@@ -50,8 +42,13 @@ exports.connect = function() {
     mongoose.connection.on('error', () => {
       reject('DB-ERROR')
     })
-    mongoose.connection.once('open', () => {
+    mongoose.connection.once('open', async () => {
+      await initSchema()
+      await initAdmin()
       resolve('DB-OK')
     })
   })
 }
+
+module.exports = connect
+

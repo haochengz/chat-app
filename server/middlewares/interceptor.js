@@ -6,7 +6,8 @@ const INTERCEPTORS = [
 ]
 
 module.exports = app => {
-  INTERCEPTORS.map(interceptor => {
+  console.info('[INFO] loading interceptor middlewares')
+  INTERCEPTORS.forEach(interceptor => {
     const path = resolve(__dirname, '../interceptors', interceptor)
     app.use(require(path))
   })

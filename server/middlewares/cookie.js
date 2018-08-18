@@ -12,6 +12,6 @@ const CONFIG = {
 }
 
 module.exports = app => {
-  console.log('loading session middleware')
+  console.info('[INFO] loading session middleware')
   app.use(session(CONFIG, app))
 }
