@@ -72,7 +72,7 @@ userRouter.get('/', async (ctx, next) => {
     }
   } else {
     ctx.body = {
-      code: 0,
+      code: 1,
       msg: 'cannot find user'
     }
   }

@@ -14,6 +14,8 @@ const MIDDLEWARES = [
   'route'
 ]
 
+// TODO: test middleware loading failure
+
 const middlewares = MIDDLEWARES.map(fileName => resolve(__dirname, 'middlewares/', fileName))
 const loadMiddleware = async filePath => {
   const middleware = require(filePath)

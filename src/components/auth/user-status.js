@@ -9,9 +9,9 @@ import {
   signin,
   signout
 } from '../../storage/actions/user.redux'
+import Navigation from '../nav-bar'
 
 const R = require('ramda')
-
 
 const publicViewList = [
   '/login',
@@ -39,6 +39,7 @@ export default class UserStatus extends React.Component {
 
   componentDidMount() {
     const isPublicRequest = R.any(
+      // FIXME: startsWith is a better way
       R.equals(this.props.location.pathname)
     )(publicViewList)
     if (isPublicRequest) {
@@ -78,7 +79,8 @@ export default class UserStatus extends React.Component {
     )
     return (
       <div>
-        {statusBar}
+        <Navigation />
+        {this.state.greenLight ? null : statusBar}
         {app}
       </div>
     )
