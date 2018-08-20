@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const glob = require('glob')
 const { resolve } = require('path')
-const db = require('../../setup/database')
+const db = require('../setup/database')
 
 mongoose.Promise = global.Promise
 

@@ -4,7 +4,7 @@ const app = new Koa()
 const { resolve } = require('path')
 const { afterAllWithWaitForEach } = require('./utils/helper')
 
-const setup = require('../setup/server')
+const setup = require('./setup/server')
 
 const MIDDLEWARES = [
   'database',
@@ -15,8 +15,8 @@ const MIDDLEWARES = [
 ]
 
 // TODO: test middleware loading failure
-
 const middlewares = MIDDLEWARES.map(fileName => resolve(__dirname, 'middlewares/', fileName))
+
 const loadMiddleware = async filePath => {
   const middleware = require(filePath)
   try {
