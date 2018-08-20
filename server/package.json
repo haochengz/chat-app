@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Server side of the chat app",
+  "main": "start.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon server/start.js"
+  },
+  "author": "hczhao",
+  "license": "MIT",
+  "dependencies": {
+    "jest": "^23.5.0"
+  }
+}
