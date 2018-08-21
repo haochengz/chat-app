@@ -76,6 +76,7 @@ userRouter.get('/', async (ctx, next) => {
       msg: 'cannot find user'
     }
   }
+  return next()
 })
 
 userRouter.post('/', koaBody(), async (ctx, next) => {
@@ -102,6 +103,7 @@ userRouter.put('/', koaBody(), async (ctx, next) => {
       code: -1
     }
   }
+  return next()
 })
 
 userRouter.delete('/', (ctx, next) => {

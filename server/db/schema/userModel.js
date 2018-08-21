@@ -97,6 +97,7 @@ userSchema.methods = {
       })
     })
   },
+  // FIXME: this method is not working
   incLoginAttempts: user => {
     return new Promise((resolve, reject) => {
       if (this.lockUntil && this.lockUntil < Date.now()) {
