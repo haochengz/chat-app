@@ -5,11 +5,7 @@ import Front from './views/front'
 import SignupView from './components/auth/signup'
 import SigninView from './components/auth/signin'
 import UserStatus from './components/auth/user-status'
-
-// TODO: temporary
-function Foo() {
-  return <h1>Dashboard</h1>
-}
+import Profile from './components/auth/profile'
 
 export default class App extends Component {
   render() {
@@ -22,7 +18,7 @@ export default class App extends Component {
               <Route path='/' exact component={Front}></Route>
               <Route path='/login' component={SigninView}></Route>
               <Route path='/register' component={SignupView}></Route>
-              <Route path='/dashboard' component={Foo}></Route>
+              <Route path='/profile' component={Profile}></Route>
             </Switch>
           </UserStatus>
         </div>

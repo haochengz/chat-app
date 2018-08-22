@@ -9,6 +9,7 @@ import {
   Radio,
   List
 } from 'antd-mobile'
+import { connect } from 'react-redux'
 
 import Logo from '../logo'
 import UsernameInput from '../input/username'
@@ -16,8 +17,14 @@ import EmailInput from '../input/email'
 import PasswordComfirmInput from '../input/password-comfirm'
 import SignupSubmit from '../input/signup-submit'
 
+import { login } from '../../storage/actions/user.redux'
+
 const RadioItem = Radio.RadioItem
 
+@connect(
+  state => ({user: state.user}),
+  { login }
+)
 export default class SignupView extends React.Component {
   constructor(props) {
     super(props)
@@ -69,9 +76,17 @@ export default class SignupView extends React.Component {
     })
   }
 
-  whenSubmit(status, payload) {
+  async whenSubmit(status, payload) {
+    console.log('submit')
+    console.log(status)
     if(status === 'ok') {
-      this.props.history.push('/login')
+      console.log('register ok')
+      await this.props.login(
+        this.state.username.v,
+        this.state.password.v
+      )
+      console.log('goto profile page')
+      this.props.history.push('/profile')
     } else {
       this.setState({
         submitBtnName: payload.btn,
