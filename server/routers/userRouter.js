@@ -106,6 +106,24 @@ userRouter.put('/', koaBody(), async (ctx, next) => {
   return next()
 })
 
+userRouter.patch('/', koaBody(), async (ctx, next) => {
+  // TODO: requiring signed in
+  // TODO: _id field is constant
+  const user = ctx.request.body
+  const status = await register(user)
+  if(status) {
+    ctx.body = {
+      code: 0,
+      user: status
+    }
+  } else {
+    ctx.body = {
+      code: -1
+    }
+  }
+  return next()
+})
+
 userRouter.delete('/', (ctx, next) => {
   ctx.cookies.set('__userid', '')
   ctx.body = {

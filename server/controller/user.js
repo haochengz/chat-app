@@ -29,6 +29,19 @@ exports.register = async registrant => {
   }
 }
 
+exports.update = async user => {
+  try {
+    const status = await User.update(
+      {_id: user._id},
+      {...user},
+    )
+    return status
+  } catch(error) {
+    console.error(error)
+    return false
+  }
+}
+
 exports.auth = async user => {
   const userModel = await User.findOne({
     $or: [
