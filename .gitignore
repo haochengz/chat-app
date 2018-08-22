@@ -84,3 +84,4 @@ yarn-error.log*
 setup/database.js
 setup/server.js
 *.sublime-workspace
+*.sublime-project
