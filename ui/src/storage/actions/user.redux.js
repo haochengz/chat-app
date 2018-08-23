@@ -3,7 +3,8 @@ import axios from 'axios'
 
 import {
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  UPDATE
 } from '../types.redux'
 
 export const login = (username, password) => dispatch => {
@@ -42,6 +43,20 @@ export const signout = () => dispatch => {
       if(result.data.code === 0) {
         dispatch({
           type: LOGOUT
+        })
+      }
+    }).catch(error => {
+      console.log(error)
+    })
+}
+
+export const update = user => dispatch => {
+  axios.patch('/api/v1/user', user)
+    .then(result => {
+      if(result.data.code === 0) {
+        dispatch({
+          type: UPDATE,
+          payload: user
         })
       }
     }).catch(error => {

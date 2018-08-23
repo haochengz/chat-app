@@ -24,10 +24,8 @@ const userSchema = new mongoose.Schema({
   identity: {
     type: Number
   },
-  profile: {
-    avatar: String,
-    positions: Array
-  },
+  avatar: String,
+  positions: String,
   cv: String,
   lockUntil: Number,
   loginAttempts: {

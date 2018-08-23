@@ -7,6 +7,7 @@ userRouter.prefix('/api/v1/user')
 const {
   findUserByType,
   register,
+  update,
   auth
 } = require('../controller/user')
 
@@ -110,7 +111,7 @@ userRouter.patch('/', koaBody(), async (ctx, next) => {
   // TODO: requiring signed in
   // TODO: _id field is constant
   const user = ctx.request.body
-  const status = await register(user)
+  const status = await update(user)
   if(status) {
     ctx.body = {
       code: 0,
