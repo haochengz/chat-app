@@ -1,4 +1,6 @@
 
-export const LOGIN = Symbol('LOGIN')
-export const LOGOUT = Symbol('LOGOUT')
-export const UPDATE = Symbol('UPDATE')
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const UPDATE = 'UPDATE'
+
+export const SETUP_NAVBAR = 'SETUP_NAVBAR'

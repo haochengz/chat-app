@@ -6,6 +6,7 @@ import SignupView from './components/auth/signup'
 import SigninView from './components/auth/signin'
 import UserStatus from './components/auth/user-status'
 import Profile from './components/auth/profile'
+import Navgation from './components/nav-bar'
 
 export default class App extends Component {
   render() {
@@ -13,6 +14,7 @@ export default class App extends Component {
       <BrowserRouter>
         <div>
           <UserStatus>
+          <Navgation />
             <Switch>
               {/* TODO: Asynchronous loading components */}
               <Route path='/' exact component={Front}></Route>

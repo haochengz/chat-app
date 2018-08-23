@@ -5,10 +5,17 @@ import {
   Icon,
   Popover
 } from 'antd-mobile'
+import { connect } from 'react-redux'
 
 const Item = Popover.Item
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
 
+@connect(
+  state => ({
+    navbar: state.navbar
+  }),
+  {}
+)
 class Navigation extends React.Component {
   constructor(props) {
     super(props)
@@ -31,11 +38,21 @@ class Navigation extends React.Component {
   }
 
   render() {
+    const nav = this.props.navbar
+    if(nav.visible === false) return null
+    let { icon, iconClick } = [null, null]
+    if(nav.leftIconVisible) {
+      icon = nav.leftIcon || null
+      iconClick = nav.leftIconOnClick || null
+    } else {
+      icon = null
+      iconClick = null
+    }
     return (
       <NavBar
         mode="light"
-        icon={<Icon type="left" />}
-        onLeftClick={() => console.log('clicking left')}
+        icon={icon}
+        onLeftClick={iconClick}
         rightContent={[
           <Icon
             key="0"
@@ -93,7 +110,7 @@ class Navigation extends React.Component {
           </Popover>
         ]}
       >
-        Chat
+        {nav.title}
       </NavBar>
     )
   }

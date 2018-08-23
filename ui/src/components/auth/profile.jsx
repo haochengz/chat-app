@@ -9,10 +9,14 @@ import {
 
 import AvatarSelector from '../input/avatar'
 import { update } from '../../storage/actions/user.redux'
+import { setupNavbar } from '../../storage/actions/navbar.redux'
 
 @connect(
-  status => ({user: status.user}),
-  {update}
+  status => ({
+    user: status.user,
+    navbar: status.navbar
+  }),
+  {update, setupNavbar}
 )
 export default class Profile extends React.PureComponent {
   constructor(props) {
@@ -27,6 +31,11 @@ export default class Profile extends React.PureComponent {
   }
 
   componentWillMount() {
+    this.props.setupNavbar({
+      visible: true,
+      leftIconVisible: false,
+      title: 'PROFILE'
+    })
     if(this.props.user.hasLogin) {
       const role = this.props.identify === 1 ? 'employee' : 'employer'
       const positions = this.props.user.positions
@@ -97,7 +106,7 @@ export default class Profile extends React.PureComponent {
       inputItems = this.employerFields()
     }
     return (
-      <List renderHeader = {() => 'Profile'}>
+      <List renderHeader = {() => 'Your Profile:'}>
         <AvatarSelector
           input={this.input.bind(this, 'avatar')}
           currentAvatar={this.state.avatar}

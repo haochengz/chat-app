@@ -9,7 +9,6 @@ import {
   signin,
   signout
 } from '../../storage/actions/user.redux'
-import Navigation from '../nav-bar'
 
 const R = require('ramda')
 
@@ -55,32 +54,12 @@ export default class UserStatus extends React.Component {
     }
   }
 
-  click() {
-    if(this.props.user.hasLogin) {
-      this.props.signout()
-      this.props.history.push('/login')
-    } else {
-      this.props.history.push('/login')
-    }
-  }
-
   render() {
-    const loginUser = this.props.user.username
     if(this.props.user.hasLogin || this.state.greenLight) {
       var app = this.props.children
     }
-    const statusBar = (
-      <Button
-        type="primary"
-        onClick={this.click.bind(this)}
-      >
-        {this.props.user.hasLogin ? 'Sign out from ' + loginUser : 'Sign in'}
-      </Button>
-    )
     return (
       <div>
-        <Navigation />
-        {this.state.greenLight ? null : statusBar}
         {app}
       </div>
     )
