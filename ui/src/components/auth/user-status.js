@@ -55,8 +55,13 @@ export default class UserStatus extends React.Component {
   }
 
   render() {
+    var app = null
     if(this.props.user.hasLogin || this.state.greenLight) {
-      var app = this.props.children
+      app = this.props.children
+    } else {
+      // TODO: wait for 5 seconds then display the login tip
+      // or wait until login process is done
+      app = <h2>Login please</h2>
     }
     return (
       <div>
