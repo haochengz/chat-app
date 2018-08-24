@@ -66,12 +66,14 @@ export default class Profile extends React.PureComponent {
 
   employeeFields() {
     return (
-      <TextareaItem
-        title="CV"
-        rows={5}
-        value={this.state.cv}
-        onChange={this.input.bind(this, 'cv')}
-      />
+      <div>
+        CV
+        <TextareaItem
+          rows={5}
+          value={this.state.cv}
+          onChange={this.input.bind(this, 'cv')}
+        />
+      </div>
     )
   }
 
@@ -80,7 +82,7 @@ export default class Profile extends React.PureComponent {
       <div>
         Job Openning:
         <TextareaItem
-          rows={5}
+          rows={8}
           value={this.state.positions}
           onChange={this.input.bind(this, 'positions')}
         />

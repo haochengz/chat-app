@@ -86,7 +86,13 @@ export default class SignupView extends React.Component {
         this.state.password.v
       )
       console.log('goto profile page')
-      this.props.history.push('/profile')
+      // FIXME: /profile view throws an error because that
+      // redux action isn't finish
+      // and this is a bad way to deal with it, fix in the future
+      setTimeout(
+        () => this.props.history.push('/profile'),
+        2000
+      )
     } else {
       this.setState({
         submitBtnName: payload.btn,

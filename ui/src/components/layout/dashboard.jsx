@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import Footer from './footer'
 import { setupNavbar } from '../../storage/actions/navbar.redux'
+import List from './list'
 
 @connect(
   state => state,
@@ -26,7 +27,7 @@ export default class Dashboard extends React.Component {
   }
 
   renderContent(v) {
-    return <h2>{v}</h2>
+    if(v === 'List') return <List />
   }
 
   focusChange(v) {

@@ -25,7 +25,8 @@ export default class AvatarSelector extends React.PureComponent {
           data={avatars}
           columnNum={3}
           isCarousel={true}
-          carouselMaxRow={2}
+          carouselMaxRow={3}
+          squalre={true}
           onClick={this.select.bind(this)}
           renderItem={item => {
             let style = {

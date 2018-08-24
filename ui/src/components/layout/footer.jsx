@@ -45,12 +45,19 @@ export default class Footer extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      fullScreen: false
+      fullScreen: false,
+      hidden: false
     }
   }
 
   renderContent(v) {
-    return this.props.renderContent(v)
+    return (
+      <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
+        <div style={{ paddingTop: 60 }}>
+          {this.props.renderContent(v)}
+        </div>
+      </div>
+    );
   }
 
   render() {

@@ -9,6 +9,7 @@ import thunk from 'redux-thunk'
 
 const REDUCERS = [
   'user',
+  'users',
   'navbar'
 ]
 let reducers = {}
