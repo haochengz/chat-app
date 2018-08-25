@@ -2568,6 +2568,12 @@ enzyme-adapter-utils@^1.5.0:
     object.assign "^4.1.0"
     prop-types "^15.6.2"
 
+enzyme-to-json@^3.3.4:
+  version "3.3.4"
+  resolved "http://registry.npm.taobao.org/enzyme-to-json/download/enzyme-to-json-3.3.4.tgz#67c6040e931182f183418af2eb9f4323258aa77f"
+  dependencies:
+    lodash "^4.17.4"
+
 enzyme@^3.4.4:
   version "3.4.4"
   resolved "http://registry.npm.taobao.org/enzyme/download/enzyme-3.4.4.tgz#92c7c6b9e59d4ef0c3d36a75dccc0e41a5c14d21"

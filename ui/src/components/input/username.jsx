@@ -35,18 +35,19 @@ export default class UsernameInput extends React.PureComponent {
     }
   }
 
-  input(v) {
-    const errors = this.errorChecker(v)
-    this.props.onChange(v, errors)
+  input(value) {
+    const errors = this.errorChecker(value)
+    this.props.onChange(value, errors)
   }
 
   render() {
+    const errors = this.props.errors ? this.props.errors : false
     return (
       <InputItem
         clear
         placeholder='Username'
         onChange={this.input}
-        error={this.props.errors.length}
+        error={errors}
         onErrorClick={this.showErrors}
         value={this.props.value}
         disabled={this.props.locked}

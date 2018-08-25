@@ -1,21 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { Provider } from 'react-redux'
-import store from './storage'
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import App from './App';
+// import { Provider } from 'react-redux'
+// import store from './storage'
 
 it('should pass this canary test', () => {
   expect(2 + 2).toBe(4)
 })
 
-/*
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(
-    (<Provider store={store}>
-      <App />
-    </Provider>), div)
-  ReactDOM.unmountComponentAtNode(div);
-});
-*/
+// it('renders without crashing', () => {
+//   const div = document.createElement('div');
+//   ReactDOM.render(
+//     (<Provider store={store}>
+//       <App />
+//     </Provider>), div)
+//   ReactDOM.unmountComponentAtNode(div);
+// });
 
