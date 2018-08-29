@@ -23,16 +23,14 @@ userRouter.get('/username', async (ctx, next) => {
       code: code,
       msg: msg
     }
-    return next()
   } catch(error) {
-    console.log(error)
-    console.log('Database query failed')
+    console.error(error)
     ctx.body = {
       code: -1,
       msg: 'database or connection fail'
     }
-    return next()
   }
+  return next()
 })
 
 // GET /api/v1/user/email, query {email: ${email}}

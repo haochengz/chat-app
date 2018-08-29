@@ -1,12 +1,24 @@
 
 const mongoose = require('mongoose')
 const User = mongoose.model('User')
+const R = require('ramda')
 
-exports.findUserByType = async (type, value) => {
-  const entity = await User.findOne({
-    [type]: value
+exports.findUserByType = (type, value) => {
+  return new Promise((resolve, reject) => {
+    const ACCEPTED_FIELD = [
+      '_id', 'username', 'email'
+    ]
+    if(!R.contains(type, ACCEPTED_FIELD)){
+      reject('Unsupported field for query: ' + type)
+    }
+    User.findOne({
+      [type]: value
+    }).then(doc => {
+      resolve(doc)
+    }).catch(error => {
+      reject(error)
+    })
   })
-  return entity
 }
 
 exports.register = async registrant => {
