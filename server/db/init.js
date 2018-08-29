@@ -10,7 +10,7 @@ const dbConn = `mongodb://${db.user}:${db.pwd}@${db.host}:${db.port}/${db.name}`
 
 const initSchema = function() {
   console.log('[INFO] Initializing data schemas')
-  glob.sync(resolve(__dirname, 'schema', '**/*.js'))
+  glob.sync(resolve(__dirname, 'schema', '**/*.model.js'))
     .forEach(require)
 }
 
