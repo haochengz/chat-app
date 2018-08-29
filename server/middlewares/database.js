@@ -1,13 +1,16 @@
 
 const connect = require('../db/init')
 
-module.exports = async app => {
-  try {
-    var status = await connect()
-    console.info('[INFO] ' + status)
-  } catch(error) {
-    console.error('[ERROR] Database connection failed')
-    console.error(error)
-  }
-  return status
+module.exports = async () => {
+  return new Promise((resolve, reject) => {
+    connect()
+      .then(status => {
+        console.info('[INFO -> middleware loader] ' + status)
+        resolve(status)
+      })
+      .catch(error => {
+        console.error('[ERROR -> middleware loader] Database connection failed')
+        reject(error)
+      })
+  })
 }

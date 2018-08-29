@@ -1,5 +1,5 @@
 
-const session = require('koa-session')
+import session from 'koa-session'
 
 const CONFIG = {
   key: 'koa:sess',
@@ -11,7 +11,7 @@ const CONFIG = {
   renew: false
 }
 
-module.exports = app => {
+module.exports = async app => {
   console.info('[INFO] loading session middleware')
-  app.use(session(CONFIG, app))
+  await app.use(session(CONFIG, app))
 }

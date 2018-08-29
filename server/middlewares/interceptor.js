@@ -6,9 +6,12 @@ const INTERCEPTORS = [
 ]
 
 module.exports = app => {
-  console.info('[INFO] loading interceptor middlewares')
-  INTERCEPTORS.forEach(interceptor => {
-    const path = resolve(__dirname, '../interceptors', interceptor)
-    app.use(require(path))
+  return new Promise(reso => {
+    console.info('[INFO] loading interceptors')
+    INTERCEPTORS.forEach((interceptor, index) => {
+      const path = resolve(__dirname, '../interceptors', interceptor)
+      app.use(require(path))
+      if(index + 1 === INTERCEPTORS.length) reso()
+    })
   })
 }

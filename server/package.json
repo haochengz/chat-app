@@ -4,19 +4,32 @@
   "description": "Server side of the chat app",
   "main": "start.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "start": "nodemon server/start.js"
   },
   "author": "hczhao",
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "bcrypt": "^3.0.0",
     "jest": "^23.5.0",
+    "jest-cli": "^23.5.0",
     "koa": "^2.5.2",
     "koa-body": "^4.0.4",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "koa-session": "^5.8.2",
     "mongoose": "^5.2.9"
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }
