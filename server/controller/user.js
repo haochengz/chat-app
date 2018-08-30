@@ -35,7 +35,7 @@ exports.register = async registrant => {
     }).then(res => {
       if(res && res.length === 0) {
         const user = new User(registrant)
-        resolve(user.save())
+        user.save().then(x => resolve(x))
       } else {
         reject('username or email already exists')
       }
@@ -46,16 +46,16 @@ exports.register = async registrant => {
 }
 
 exports.update = async user => {
-  try {
-    const status = await User.update(
+  return new Promise((resolve, reject) => {
+    if(!('_id' in user)) reject('Cannot found id field in passing in object')
+    User.update(
       {_id: user._id},
       {...user},
-    )
-    return status
-  } catch(error) {
-    console.error(error)
-    return false
-  }
+    ).then(res => {
+      if(res.n === 0) reject('Cannot found any user match the id field')
+      resolve(res)
+    }).catch(error => reject(error))
+  })
 }
 
 exports.auth = async user => {
