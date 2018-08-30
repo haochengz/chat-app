@@ -3,7 +3,8 @@ import mockingoose from 'mockingoose'
 import '../db/schema/user.model'
 
 const {
-  findUserByType
+  findUserByType,
+  register
 } = require('./user')
 
 describe('findUserType tests', () => {
@@ -54,5 +55,35 @@ describe('register tests', () => {
     mockingoose.resetAll()
   })
 
-  // should
+  it('should add a new user to db and return it', async () => {
+    const _doc = {
+      username: 'testuser',
+      password: '123456',
+      email: 'test@gmail.com'
+    }
+    mockingoose.User
+      .toReturn([], 'find')
+      .toReturn(_doc, 'save')
+    const user = await register(_doc)
+
+    expect(user).toMatchObject(_doc)
+  })
+
+  it('should throw an error if any unique fields are duplicated', async () => {
+    const _doc = {
+      username: 'testuser',
+      password: '123456',
+      email: 'test@gmail.com'
+    }
+    mockingoose.User
+      .toReturn([_doc], 'find')
+      .toReturn(_doc, 'save')
+    register(_doc)
+      .then(() => {
+        // never been here
+        expect(true).toBe(false)
+      }).catch(error => {
+        expect(error).toBe('username or email already exists')
+      })
+  })
 })

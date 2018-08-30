@@ -22,23 +22,27 @@ exports.findUserByType = (type, value) => {
 }
 
 exports.register = async registrant => {
-  const status = await User.find({
-    $or: [
-      {
-        email: registrant.email
-      },
-      {
-        username: registrant.username
+  return new Promise((resolve, reject) => {
+    User.find({
+      $or: [
+        {
+          email: registrant.email
+        },
+        {
+          username: registrant.username
+        }
+      ]
+    }).then(res => {
+      if(res && res.length === 0) {
+        const user = new User(registrant)
+        resolve(user.save())
+      } else {
+        reject('username or email already exists')
       }
-    ]
+    }).catch(error => {
+      reject(error)
+    })
   })
-  if(status.length > 0) {
-    return false
-  } else {
-    const user = new User(registrant)
-    await user.save()
-    return user
-  }
 }
 
 exports.update = async user => {
