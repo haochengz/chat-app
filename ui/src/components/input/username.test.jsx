@@ -1,8 +1,8 @@
 
 import React from 'react'
 import UsernameInput from './username'
-import { shallow } from 'enzyme'
-import toJSON from 'enzyme-to-json'
+import { shallow, mount } from 'enzyme'
+// import toJSON from 'enzyme-to-json'
 
 describe('<UsernameInput />', () => {
   it('should match the snapshot', () => {
@@ -35,7 +35,7 @@ describe('<UsernameInput />', () => {
     )
     const input = wrapper.find('InputItem')
     input.simulate('change', 'test')
-    expect(errors).toBeTruthy()
+    expect(errors).toHaveLength(1)
   })
 
   it('should emit an empty array reprents with no error if inputs are valid', () => {
@@ -50,7 +50,7 @@ describe('<UsernameInput />', () => {
     )
     const input = wrapper.find('InputItem')
     input.simulate('change', 'michael')
-    expect(errors).toEqual([])
+    expect(errors).toHaveLength(0)
   })
 
   it('should emit an array that contains mutiple errors if inputs had mutiple errors', () => {
@@ -65,7 +65,7 @@ describe('<UsernameInput />', () => {
     )
     const input = wrapper.find('InputItem')
     input.simulate('change', 'i@me')
-    expect(errors.length).toEqual(2)
+    expect(errors).toHaveLength(2)
   })
 
   it('should clean the error once change the value to an valid value', () => {
@@ -80,11 +80,12 @@ describe('<UsernameInput />', () => {
     )
     const input = wrapper.find('InputItem')
     input.simulate('change', 'i@me')
+    expect(errors).toHaveLength(2)
     input.simulate('change', 'iandme')
-    expect(errors).toEqual([])
+    expect(errors).toHaveLength(0)
   })
 
-  it('should had no error if the input box are emptyand it was never changed yet', () => {
+  it('should had no error if the input box are empty and it was never changed yet', () => {
     let errors = null
     function change(v, e) {
       errors = e
@@ -108,17 +109,41 @@ describe('<UsernameInput />', () => {
       />
     )
     const input = wrapper.find('InputItem')
-    input.simulate('change', 'test')
+    input.simulate('change', 'testuser')
+    expect(errors).toHaveLength(0)
     input.simulate('change', '')
-    expect(errors.length).toBe(2)
+    expect(errors).toHaveLength(2)
   })
 
-  it('should works', () => {
-    let wrapper = shallow(
+  it('should render an error badge if any errors passing in to the component', () => {
+    const wrapper = mount(
       <UsernameInput
+        errors={['error1', 'error2']}
       />
     )
-    const input = wrapper.find('InputItem')
-    expect(wrapper).toBe(input)
+    expect(wrapper.exists('.am-input-error-extra')).toBe(true)
+  })
+
+  it('should no error badge if no errors passing in to the component', () => {
+    const wrapper = mount(
+      <UsernameInput
+        errors={[]}
+      />
+    )
+    expect(wrapper.exists('.am-input-error-extra')).toBe(false)
+  })
+
+  it('should calls the showErrors method if error badge had been clicked and there are errors in error array', () => {
+    const errorHandler = jest.fn()
+    const wrapper = mount(
+      <UsernameInput
+        errors={['error1', 'error2']}
+      />
+    )
+    wrapper.instance().showErrors = errorHandler
+    wrapper.instance().forceUpdate()
+    const errorBadge = wrapper.find('.am-input-error-extra')
+    errorBadge.simulate('click')
+    expect(errorHandler).toBeCalled()
   })
 })

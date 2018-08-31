@@ -29,7 +29,7 @@ export default class UsernameInput extends React.PureComponent {
     return errors
   }
 
-  showErrors() {
+  showErrors(event) {
     if(this.props.errors.length > 0) {
       Toast.info(this.props.errors[0])
     }
@@ -41,7 +41,9 @@ export default class UsernameInput extends React.PureComponent {
   }
 
   render() {
-    const errors = this.props.errors ? this.props.errors : false
+    const errors = this.props.errors && this.props.errors.length
+      ? this.props.errors
+      : false
     return (
       <InputItem
         clear
