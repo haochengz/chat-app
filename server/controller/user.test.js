@@ -138,3 +138,21 @@ describe('update tests', () => {
     }
   })
 })
+
+describe('authentication tests', () => {
+  // FIXME: auth function
+  beforeEach(() => {
+    mockingoose.resetAll()
+  })
+
+  it.skip('should resolve if password was correct', () => {
+  })
+
+  it.skip('should reject if no user were found in db', () => {
+    //
+  })
+
+  it.skip('should reject if password compare failed', () => {
+    //
+  })
+})

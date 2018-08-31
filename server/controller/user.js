@@ -58,39 +58,32 @@ exports.update = async user => {
   })
 }
 
-exports.auth = async user => {
-  const userModel = await User.findOne({
-    $or: [
-      {
-        email: user.email
-      },
-      {
-        username: user.username
-      }
-    ]
-  })
-  try {
-    let status = false
-    status = await User.comparePassword(user.password, userModel.password)
-    if(status) {
-      return {
-        code: 0,
-        msg: 'success',
-        data: {
-          user: userModel
+exports.auth = user => {
+  return new Promise((resolve, reject) => {
+    User.findOne({
+      $or: [
+        {
+          email: user.email
+        },
+        {
+          username: user.username
         }
+      ]
+    }).then(found => {
+      if(found) {
+        return found.comparePassword(user.password)
+      } else {
+        reject('wrong username or password mark i')
       }
-    } else {
-      return {
-        code: 1,
-        msg: 'wrong username or password'
+    }).then(result => {
+      if(result) {
+        resolve('ok')
+      } else {
+        reject('wrong username or password mark ii')
       }
-    }
-  } catch(error) {
-    return {
-      code: -1,
-      msg: 'server or database failure',
-      error: error
-    }
-  }
+    }).catch(error => {
+      console.error(error)
+      reject('something wrong with the database or connection')
+    })
+  })
 }
