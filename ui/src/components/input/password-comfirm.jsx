@@ -54,15 +54,17 @@ export default class PasswordComfirmInput extends React.PureComponent {
   }
 
   repeat(v) {
+    const password = this.props.value ? this.props.value : ''
     this.setState({
       __p: v
     })
     const matchError = this.passwordMatch(this.props.value, v)
-    const errors = this.errorChecker(this.props.value)
-    this.props.onChange(this.props.value, [...errors, ...matchError])
+    const errors = this.errorChecker(password)
+    this.props.onChange(password, [...errors, ...matchError])
   }
 
   render() {
+    const errors = this.props.errors ? this.props.errors.length : false
     return (
       <div>
         <InputItem
@@ -70,7 +72,7 @@ export default class PasswordComfirmInput extends React.PureComponent {
           type="password"
           placeholder='Password'
           onChange={this.input}
-          error={this.props.errors.length}
+          error={errors}
           onErrorClick={this.showErrors}
           value={this.props.value}
           disabled={this.props.locked}
@@ -82,7 +84,7 @@ export default class PasswordComfirmInput extends React.PureComponent {
           type="password"
           placeholder='Repeat the password'
           onChange={this.repeat}
-          error={this.props.errors.length}
+          error={errors}
           onErrorClick={this.showErrors}
           value={this.state.__p}
           disabled={this.props.locked}

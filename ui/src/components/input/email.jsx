@@ -24,7 +24,6 @@ export default class EmailInput extends React.PureComponent {
     return errors
   }
 
-
   showErrors() {
     if(this.props.errors.length > 0) {
       Toast.info(this.props.errors[0])
@@ -37,12 +36,13 @@ export default class EmailInput extends React.PureComponent {
   }
 
   render() {
+    const errors = this.props.errors ? this.props.errors.length : false
     return (
       <InputItem
         clear
         placeholder='Email'
         onChange={this.input}
-        error={this.props.errors.length}
+        error={errors}
         onErrorClick={this.showErrors}
         value={this.props.value}
         disabled={this.props.locked}
