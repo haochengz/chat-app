@@ -30,14 +30,13 @@ export default class SignupSubmit extends React.PureComponent {
         this.props.query('taken', {
           btn: 'SIGN UP',
           hasError: true,
-          error: errorMsg
+          error: errorMsg,
+          originError: error
         })
       }
     } else {
       try {
         var registerStatus = await signUpAs(this.props.registrant)
-        console.log('inside sign up method')
-        console.log(registerStatus)
         this.props.submit('ok', registerStatus)
       } catch(error) {
         this.props.submit('error', {

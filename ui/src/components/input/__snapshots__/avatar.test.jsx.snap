@@ -1,0 +1,522 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AvatarSelector /> should match snapshot 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AvatarSelector />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        "Please choose an avatar:",
+        <Grid
+          carouselMaxRow={3}
+          columnNum={3}
+          data={
+                    Array [
+                              Object {
+                                "icon": "avatar-1.jpeg",
+                                "text": "avatar-1",
+                              },
+                              Object {
+                                "icon": "avatar-2.jpeg",
+                                "text": "avatar-2",
+                              },
+                              Object {
+                                "icon": "avatar-3.jpeg",
+                                "text": "avatar-3",
+                              },
+                              Object {
+                                "icon": "avatar-4.jpeg",
+                                "text": "avatar-4",
+                              },
+                              Object {
+                                "icon": "avatar-5.jpeg",
+                                "text": "avatar-5",
+                              },
+                              Object {
+                                "icon": "avatar-6.jpeg",
+                                "text": "avatar-6",
+                              },
+                              Object {
+                                "icon": "avatar-7.jpeg",
+                                "text": "avatar-7",
+                              },
+                              Object {
+                                "icon": "avatar-8.jpeg",
+                                "text": "avatar-8",
+                              },
+                              Object {
+                                "icon": "avatar-9.jpeg",
+                                "text": "avatar-9",
+                              },
+                              Object {
+                                "icon": "avatar-10.jpeg",
+                                "text": "avatar-10",
+                              },
+                              Object {
+                                "icon": "avatar-11.jpeg",
+                                "text": "avatar-11",
+                              },
+                              Object {
+                                "icon": "avatar-12.jpeg",
+                                "text": "avatar-12",
+                              },
+                              Object {
+                                "icon": "avatar-13.jpeg",
+                                "text": "avatar-13",
+                              },
+                              Object {
+                                "icon": "avatar-14.jpeg",
+                                "text": "avatar-14",
+                              },
+                              Object {
+                                "icon": "avatar-15.jpeg",
+                                "text": "avatar-15",
+                              },
+                              Object {
+                                "icon": "avatar-16.jpeg",
+                                "text": "avatar-16",
+                              },
+                              Object {
+                                "icon": "avatar-17.jpeg",
+                                "text": "avatar-17",
+                              },
+                              Object {
+                                "icon": "avatar-18.jpeg",
+                                "text": "avatar-18",
+                              },
+                              Object {
+                                "icon": "avatar-19.jpeg",
+                                "text": "avatar-19",
+                              },
+                              Object {
+                                "icon": "avatar-20.jpeg",
+                                "text": "avatar-20",
+                              },
+                              Object {
+                                "icon": "avatar-21.jpeg",
+                                "text": "avatar-21",
+                              },
+                              Object {
+                                "icon": "avatar-22.jpeg",
+                                "text": "avatar-22",
+                              },
+                              Object {
+                                "icon": "avatar-23.jpeg",
+                                "text": "avatar-23",
+                              },
+                              Object {
+                                "icon": "avatar-24.jpeg",
+                                "text": "avatar-24",
+                              },
+                            ]
+          }
+          hasLine={true}
+          isCarousel={true}
+          itemStyle={Object {}}
+          onClick={[Function]}
+          prefixCls="am-grid"
+          renderItem={[Function]}
+          squalre={true}
+          square={true}
+/>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      "Please choose an avatar:",
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "carouselMaxRow": 3,
+          "columnNum": 3,
+          "data": Array [
+            Object {
+              "icon": "avatar-1.jpeg",
+              "text": "avatar-1",
+            },
+            Object {
+              "icon": "avatar-2.jpeg",
+              "text": "avatar-2",
+            },
+            Object {
+              "icon": "avatar-3.jpeg",
+              "text": "avatar-3",
+            },
+            Object {
+              "icon": "avatar-4.jpeg",
+              "text": "avatar-4",
+            },
+            Object {
+              "icon": "avatar-5.jpeg",
+              "text": "avatar-5",
+            },
+            Object {
+              "icon": "avatar-6.jpeg",
+              "text": "avatar-6",
+            },
+            Object {
+              "icon": "avatar-7.jpeg",
+              "text": "avatar-7",
+            },
+            Object {
+              "icon": "avatar-8.jpeg",
+              "text": "avatar-8",
+            },
+            Object {
+              "icon": "avatar-9.jpeg",
+              "text": "avatar-9",
+            },
+            Object {
+              "icon": "avatar-10.jpeg",
+              "text": "avatar-10",
+            },
+            Object {
+              "icon": "avatar-11.jpeg",
+              "text": "avatar-11",
+            },
+            Object {
+              "icon": "avatar-12.jpeg",
+              "text": "avatar-12",
+            },
+            Object {
+              "icon": "avatar-13.jpeg",
+              "text": "avatar-13",
+            },
+            Object {
+              "icon": "avatar-14.jpeg",
+              "text": "avatar-14",
+            },
+            Object {
+              "icon": "avatar-15.jpeg",
+              "text": "avatar-15",
+            },
+            Object {
+              "icon": "avatar-16.jpeg",
+              "text": "avatar-16",
+            },
+            Object {
+              "icon": "avatar-17.jpeg",
+              "text": "avatar-17",
+            },
+            Object {
+              "icon": "avatar-18.jpeg",
+              "text": "avatar-18",
+            },
+            Object {
+              "icon": "avatar-19.jpeg",
+              "text": "avatar-19",
+            },
+            Object {
+              "icon": "avatar-20.jpeg",
+              "text": "avatar-20",
+            },
+            Object {
+              "icon": "avatar-21.jpeg",
+              "text": "avatar-21",
+            },
+            Object {
+              "icon": "avatar-22.jpeg",
+              "text": "avatar-22",
+            },
+            Object {
+              "icon": "avatar-23.jpeg",
+              "text": "avatar-23",
+            },
+            Object {
+              "icon": "avatar-24.jpeg",
+              "text": "avatar-24",
+            },
+          ],
+          "hasLine": true,
+          "isCarousel": true,
+          "itemStyle": Object {},
+          "onClick": [Function],
+          "prefixCls": "am-grid",
+          "renderItem": [Function],
+          "squalre": true,
+          "square": true,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          "Please choose an avatar:",
+          <Grid
+            carouselMaxRow={3}
+            columnNum={3}
+            data={
+                        Array [
+                                    Object {
+                                      "icon": "avatar-1.jpeg",
+                                      "text": "avatar-1",
+                                    },
+                                    Object {
+                                      "icon": "avatar-2.jpeg",
+                                      "text": "avatar-2",
+                                    },
+                                    Object {
+                                      "icon": "avatar-3.jpeg",
+                                      "text": "avatar-3",
+                                    },
+                                    Object {
+                                      "icon": "avatar-4.jpeg",
+                                      "text": "avatar-4",
+                                    },
+                                    Object {
+                                      "icon": "avatar-5.jpeg",
+                                      "text": "avatar-5",
+                                    },
+                                    Object {
+                                      "icon": "avatar-6.jpeg",
+                                      "text": "avatar-6",
+                                    },
+                                    Object {
+                                      "icon": "avatar-7.jpeg",
+                                      "text": "avatar-7",
+                                    },
+                                    Object {
+                                      "icon": "avatar-8.jpeg",
+                                      "text": "avatar-8",
+                                    },
+                                    Object {
+                                      "icon": "avatar-9.jpeg",
+                                      "text": "avatar-9",
+                                    },
+                                    Object {
+                                      "icon": "avatar-10.jpeg",
+                                      "text": "avatar-10",
+                                    },
+                                    Object {
+                                      "icon": "avatar-11.jpeg",
+                                      "text": "avatar-11",
+                                    },
+                                    Object {
+                                      "icon": "avatar-12.jpeg",
+                                      "text": "avatar-12",
+                                    },
+                                    Object {
+                                      "icon": "avatar-13.jpeg",
+                                      "text": "avatar-13",
+                                    },
+                                    Object {
+                                      "icon": "avatar-14.jpeg",
+                                      "text": "avatar-14",
+                                    },
+                                    Object {
+                                      "icon": "avatar-15.jpeg",
+                                      "text": "avatar-15",
+                                    },
+                                    Object {
+                                      "icon": "avatar-16.jpeg",
+                                      "text": "avatar-16",
+                                    },
+                                    Object {
+                                      "icon": "avatar-17.jpeg",
+                                      "text": "avatar-17",
+                                    },
+                                    Object {
+                                      "icon": "avatar-18.jpeg",
+                                      "text": "avatar-18",
+                                    },
+                                    Object {
+                                      "icon": "avatar-19.jpeg",
+                                      "text": "avatar-19",
+                                    },
+                                    Object {
+                                      "icon": "avatar-20.jpeg",
+                                      "text": "avatar-20",
+                                    },
+                                    Object {
+                                      "icon": "avatar-21.jpeg",
+                                      "text": "avatar-21",
+                                    },
+                                    Object {
+                                      "icon": "avatar-22.jpeg",
+                                      "text": "avatar-22",
+                                    },
+                                    Object {
+                                      "icon": "avatar-23.jpeg",
+                                      "text": "avatar-23",
+                                    },
+                                    Object {
+                                      "icon": "avatar-24.jpeg",
+                                      "text": "avatar-24",
+                                    },
+                                  ]
+            }
+            hasLine={true}
+            isCarousel={true}
+            itemStyle={Object {}}
+            onClick={[Function]}
+            prefixCls="am-grid"
+            renderItem={[Function]}
+            squalre={true}
+            square={true}
+/>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        "Please choose an avatar:",
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "carouselMaxRow": 3,
+            "columnNum": 3,
+            "data": Array [
+              Object {
+                "icon": "avatar-1.jpeg",
+                "text": "avatar-1",
+              },
+              Object {
+                "icon": "avatar-2.jpeg",
+                "text": "avatar-2",
+              },
+              Object {
+                "icon": "avatar-3.jpeg",
+                "text": "avatar-3",
+              },
+              Object {
+                "icon": "avatar-4.jpeg",
+                "text": "avatar-4",
+              },
+              Object {
+                "icon": "avatar-5.jpeg",
+                "text": "avatar-5",
+              },
+              Object {
+                "icon": "avatar-6.jpeg",
+                "text": "avatar-6",
+              },
+              Object {
+                "icon": "avatar-7.jpeg",
+                "text": "avatar-7",
+              },
+              Object {
+                "icon": "avatar-8.jpeg",
+                "text": "avatar-8",
+              },
+              Object {
+                "icon": "avatar-9.jpeg",
+                "text": "avatar-9",
+              },
+              Object {
+                "icon": "avatar-10.jpeg",
+                "text": "avatar-10",
+              },
+              Object {
+                "icon": "avatar-11.jpeg",
+                "text": "avatar-11",
+              },
+              Object {
+                "icon": "avatar-12.jpeg",
+                "text": "avatar-12",
+              },
+              Object {
+                "icon": "avatar-13.jpeg",
+                "text": "avatar-13",
+              },
+              Object {
+                "icon": "avatar-14.jpeg",
+                "text": "avatar-14",
+              },
+              Object {
+                "icon": "avatar-15.jpeg",
+                "text": "avatar-15",
+              },
+              Object {
+                "icon": "avatar-16.jpeg",
+                "text": "avatar-16",
+              },
+              Object {
+                "icon": "avatar-17.jpeg",
+                "text": "avatar-17",
+              },
+              Object {
+                "icon": "avatar-18.jpeg",
+                "text": "avatar-18",
+              },
+              Object {
+                "icon": "avatar-19.jpeg",
+                "text": "avatar-19",
+              },
+              Object {
+                "icon": "avatar-20.jpeg",
+                "text": "avatar-20",
+              },
+              Object {
+                "icon": "avatar-21.jpeg",
+                "text": "avatar-21",
+              },
+              Object {
+                "icon": "avatar-22.jpeg",
+                "text": "avatar-22",
+              },
+              Object {
+                "icon": "avatar-23.jpeg",
+                "text": "avatar-23",
+              },
+              Object {
+                "icon": "avatar-24.jpeg",
+                "text": "avatar-24",
+              },
+            ],
+            "hasLine": true,
+            "isCarousel": true,
+            "itemStyle": Object {},
+            "onClick": [Function],
+            "prefixCls": "am-grid",
+            "renderItem": [Function],
+            "squalre": true,
+            "square": true,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getSnapshotBeforeUpdate": true,
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
